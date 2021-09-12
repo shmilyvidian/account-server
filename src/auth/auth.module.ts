@@ -9,9 +9,13 @@ import { jwtContants } from './jwt.contants';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [UserModule, PassportModule, JwtModule.register({
-    secret: jwtContants.secret,
-  }),],
+  imports: [
+    UserModule,
+    PassportModule,
+    JwtModule.register({
+      secret: jwtContants.secret,
+    }),
+  ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
 })
