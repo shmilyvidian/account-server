@@ -2,13 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
-import { AuthGuard } from './guard/guard.guard';
+// import { AuthGuard } from './guard/guard.guard';
 import { ResponseInterceptor } from './interceptor/response.interceptor';
+import { ValidationPipe } from './pipe/validation.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.useGlobalGuards(new AuthGuard());
+  app.useGlobalPipes(new ValidationPipe());
+  // app.useGlobalGuards(new AuthGuard());
 
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());

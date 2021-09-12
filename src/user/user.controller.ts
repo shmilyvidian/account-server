@@ -1,17 +1,16 @@
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from './user.service';
 import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { User } from './entity/user.entity';
-
-// @ApiBearerAuth()
+import { CreateUserDto } from './dto/user.dto';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  async register(@Body() user: User) {
+  async register(@Body() user: CreateUserDto) {
     return this.userService.register(user);
   }
 

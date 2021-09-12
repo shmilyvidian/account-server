@@ -11,7 +11,6 @@ export class Type {
   @Column()
   type: number;
 
-  @Column("int")
+  @Column('int')
   user_id: number;
-  
 }
