@@ -11,16 +11,14 @@ export class AuthController {
     private readonly userService: UserService,
   ) {}
 
-  @UseGuards(AuthGuard('local'))
+  // @UseGuards(AuthGuard('local'))
   @Post('/login')
-  async login(@Request() request): Promise<{ token: string }> {
-    return this.authService.login(request.user);
+  async login(@Body() request): Promise<{ token: string }> {
+    return this.authService.login(request);
   }
 
   @Post('register')
   async register(@Body() user: CreateUserDto) {
-    console.log('eee');
-
     return this.userService.register(user);
   }
 }
