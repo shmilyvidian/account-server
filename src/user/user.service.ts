@@ -1,7 +1,6 @@
+import { UpdateUserDto } from './dto/user.dto';
 import {
   BadRequestException,
-  HttpException,
-  HttpStatus,
   Injectable,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
@@ -39,8 +38,8 @@ export class UserService {
     return list;
   }
 
-  async editUser(user: User): Promise<string> {
-    const u = await this.usersRepository.update(user.id, { ...user });
-    return 'edit sucessfully';
+  async editUser(user: UpdateUserDto, userInfo: User): Promise<number> {    
+    const u = await this.usersRepository.update({id: userInfo.id}, { ...user });    
+    return userInfo.id;
   }
 }

@@ -16,3 +16,8 @@ export class CreateUserDto {
   @IsString()
   signature: string;
 }
+
+export class UpdateUserDto {
+  username?: string;
+  signature?: string;
+}
